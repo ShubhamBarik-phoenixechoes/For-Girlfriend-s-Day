@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>愛菜への特別なガールフレンズデー 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kosugi Maru', 'Noto Sans JP', sans-serif;
+            background: linear-gradient(45deg, #ffb3d9, #ffd9ec, #e6ccff, #ccddff);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease-in-out infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Floating particles background */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart-particle {
+            color: #ff69b4;
+            font-size: 20px;
+            animation: float 6s linear infinite;
+        }
+
+        .bow-particle {
+            width: 15px;
+            height: 15px;
+            background: #ff1493;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 8s linear infinite;
+        }
+
+        .sparkle-particle {
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #fff, #ffb3ff);
+            border-radius: 50%;
+            animation: sparkle 4s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes trail-fade {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.3) rotate(180deg);
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: bounceIn 2s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3) translateY(-50px);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .main-title {
+            font-size: 3.5em;
+            color: #ff1493;
+            text-shadow: 3px 3px 0px #fff, 6px 6px 10px rgba(255, 20, 147, 0.3);
+            margin-bottom: 20px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            color: #ff69b4;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .greeting {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.9), rgba(255, 240, 245, 0.9));
+            border: 3px solid #ff69b4;
+            border-radius: 25px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            font-size: 1.4em;
+            color: #d1477a;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .greeting::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            animation: shimmer 4s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hello-kitty-mascot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            border: 4px solid #ff69b4;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            animation: gentle-bounce 3s ease-in-out infinite;
+            background: linear-gradient(135deg, #ffb3d9, #ffd9ec);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hello-kitty-mascot:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .animated-heart {
+            font-size: 80px;
+            text-align: center;
+            line-height: 120px;
+            animation: heartbeat 2s ease-in-out infinite, gentle-bounce 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { 
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6));
+            }
+            50% { 
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.8));
+            }
+        }
+
+        @keyframes gentle-bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .qa-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            border: 2px solid #ffb3d9;
+        }
+
+        .question-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .question {
+            font-size: 2em;
+            color: #d1477a;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .answer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .answer-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Kosugi Maru', sans-serif;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .answer-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+        }
+
+        .answer-btn:active {
+            transform: translateY(0) scale(0.95);
+        }
+
+        .feedback {
+            font-size: 1.5em;
+            color: #ff1493;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            text-align: center;
+        }
+
+        .feedback.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #ffb3d9, #ff69b4);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-family: 'Kosugi Maru', sans-serif;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .easter-egg {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .easter-egg:hover {
+            transform: scale(1.2);
+        }
+
+        .easter-egg-1 {
+            top: 10%;
+            left: 5%;
+            font-size: 2em;
+        }
+
+        .easter-egg-2 {
+            top: 70%;
+            right: 10%;
+            width: 50px;
+            height: 50px;
+        }
+
+        .easter-egg-3 {
+            top: 40%;
+            left: 2%;
+            font-size: 1.5em;
+        }
+
+        .confetti-piece {
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            position: absolute;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            background: rgba(255, 182, 193, 0.3);
+            border-radius: 25px;
+            border: 2px solid rgba(255, 105, 180, 0.5);
+        }
+
+        .footer-message {
+            font-size: 1.8em;
+            color: #d1477a;
+            margin-bottom: 15px;
+        }
+
+        .signature {
+            font-size: 1.2em;
+            color: #ff69b4;
+            font-style: italic;
+        }
+
+        .heart-shower {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .heart-shower-heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 30px;
+            animation: heart-fall 4s linear infinite;
+        }
+
+        @keyframes heart-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .blush-effect {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            background: radial-gradient(ellipse, rgba(255, 105, 180, 0.6), transparent);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .show-blush {
+            opacity: 1;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5em;
+            }
+            
+            .subtitle {
+                font-size: 1.4em;
+            }
+            
+            .question {
+                font-size: 1.6em;
+            }
+            
+            .answer-btn {
+                font-size: 1em;
+                padding: 12px 20px;
+            }
+            
+            .hello-kitty-mascot {
+                width: 80px;
+                height: 80px;
+                bottom: 10px;
+                right: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+
+        /* Winking animation */
+        @keyframes wink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+
+        .winking {
+            animation: wink 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating particles background -->
+    <div id="particles-container"></div>
+
+    <!-- Easter eggs -->
+    <div class="easter-egg easter-egg-1" onclick="triggerEasterEgg(1)">🎀</div>
+    <div class="easter-egg easter-egg-2" onclick="triggerEasterEgg(2)">
+        <div style="width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(45deg, #ff69b4, #ffb3d9); display: flex; align-items: center; justify-content: center; font-size: 20px;">🐱</div>
+    </div>
+    <div class="easter-egg easter-egg-3" onclick="triggerEasterEgg(3)">💕</div>
+
+    <!-- Animated Heart mascot -->
+    <div class="hello-kitty-mascot" onclick="interactWithKitty()">
+        <div class="animated-heart">💖</div>
+        <div class="blush-effect" style="top: 70px; left: 10px;"></div>
+        <div class="blush-effect" style="top: 70px; right: 10px;"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">愛菜への特別な日 💖</h1>
+            <h2 class="subtitle">ガールフレンズデーおめでとう！</h2>
+            
+            <div class="greeting">
+                <p>親愛なる愛菜へ、</p>
+                <p>今日はとっても特別な日だよ！あなたは僕の大切な恋人で、</p>
+                <p>毎日あなたと一緒にいられることに感謝してるんだ。</p>
+                <p>あなたの笑顔は僕の心を幸せで満たしてくれる ✨</p>
+                <p>愛してるよ、愛菜ちゃん！ 💕</p>
+            </div>
+        </header>
+
+        <main class="qa-section">
+            <div class="question-container">
+                <h3 class="question" id="current-question">質問を読み込み中...</h3>
+                <div class="answer-buttons" id="answer-buttons"></div>
+                <div class="feedback" id="feedback"></div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" id="prev-btn" onclick="previousQuestion()" disabled>前の質問</button>
+                <span id="question-counter">1 / 8</span>
+                <button class="nav-btn" id="next-btn" onclick="nextQuestion()" disabled>次の質問</button>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p class="footer-message">愛菜、いつも僕の全てでいてくれてありがとう！ 💖</p>
+            <p class="signature">永遠の愛を込めて、あなたの恋人より ✨</p>
+        </footer>
+    </div>
+
+    <!-- Confetti container -->
+    <div id="confetti-container"></div>
+
+    <!-- Heart shower container -->
+    <div id="heart-shower" class="heart-shower"></div>
+
+    <script>
+        // Audio context for sound effects
+        let audioContext;
+        
+        // Initialize audio context
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        // Play sound effect
+        function playSound(frequency = 800, duration = 200, type = 'sine') {
+            initAudio();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+            oscillator.type = type;
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration / 1000);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration / 1000);
+        }
+
+        // Questions and answers data
+        const questionsData = [
+            {
+                question: "愛菜、僕のこと愛してる？",
+                answers: ["もちろんよ！", "絶対に！", "言うまでもないでしょ♡"],
+                feedback: "愛菜ちゃんの愛が僕の心を温かくしてくれる... 💕"
+            },
+            {
+                question: "ずっと僕の恋人でいてくれる？",
+                answers: ["永遠にね！", "当たり前でしょ", "約束するわ♡"],
+                feedback: "嬉しい！愛菜と永遠に一緒にいたいんだ ✨"
+            },
+            {
+                question: "今すぐキスしてもいい？",
+                answers: ["はい♡", "もちろん！", "待ってたのよ♡"],
+                feedback: "愛菜のキスは世界で一番甘いんだ... 😘"
+            },
+            {
+                question: "僕がロマンチックな時、可愛いと思う？",
+                answers: ["とっても可愛い！", "大好きよ♡", "もっとして♡"],
+                feedback: "愛菜のためなら、もっとロマンチックになれるよ 🌹"
+            },
+            {
+                question: "僕の姫って呼んでもいい？",
+                answers: ["嬉しい♡", "そう呼んで！", "私の王子様♡"],
+                feedback: "愛菜姫、僕の大切なプリンセス... 👑💖"
+            },
+            {
+                question: "今度一緒に夢みたいなデートしない？",
+                answers: ["絶対したい！", "計画して♡", "楽しみ♡"],
+                feedback: "愛菜との時間は全部が夢みたいで幸せなんだ ✨"
+            },
+            {
+                question: "僕は愛菜の唯一無二の人？",
+                answers: ["もちろんよ！", "他にいないわ♡", "あなただけ♡"],
+                feedback: "愛菜も僕の運命の人だよ... 永遠に愛してる 💕"
+            },
+            {
+                question: "愛菜、マインクラフトで赤ちゃん作らない？ 😉",
+                answers: ["えっ...♡", "もう、恥ずかしい♡", "一緒なら♡"],
+                feedback: "あはは、愛菜の恥ずかしがる顔も可愛すぎる！ 😊💕"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let answeredQuestions = new Array(questionsData.length).fill(false);
+
+        // Cursor trail functionality
+        let trailHearts = [];
+        const maxTrailHearts = 10;
+        
+        function createTrailHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.textContent = '💖';
+            heart.style.cssText = `
+                position: fixed;
+                left: ${x - 10}px;
+                top: ${y - 10}px;
+                font-size: 20px;
+                pointer-events: none;
+                z-index: 999;
+                animation: trail-fade 1.5s ease-out forwards;
+                transform: translate(-50%, -50%);
+            `;
+            
+            document.body.appendChild(heart);
+            trailHearts.push(heart);
+            
+            // Remove old hearts if too many
+            if (trailHearts.length > maxTrailHearts) {
+                const oldHeart = trailHearts.shift();
+                if (oldHeart.parentNode) {
+                    oldHeart.remove();
+                }
+            }
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.remove();
+                    const index = trailHearts.indexOf(heart);
+                    if (index > -1) {
+                        trailHearts.splice(index, 1);
+                    }
+                }
+            }, 1500);
+        }
+        
+        // Mouse trail
+        let lastMouseMove = 0;
+        document.addEventListener('mousemove', function(e) {
+            const now = Date.now();
+            if (now - lastMouseMove > 100) { // Throttle to every 100ms
+                createTrailHeart(e.clientX, e.clientY);
+                lastMouseMove = now;
+            }
+        });
+        
+        // Touch trail for mobile
+        let lastTouchMove = 0;
+        document.addEventListener('touchmove', function(e) {
+            const now = Date.now();
+            if (now - lastTouchMove > 100) { // Throttle to every 100ms
+                const touch = e.touches[0];
+                createTrailHeart(touch.clientX, touch.clientY);
+                lastTouchMove = now;
+            }
+        });
+
+        // Initialize the quiz
+        function initQuiz() {
+            showQuestion(currentQuestionIndex);
+            updateNavigationButtons();
+            updateQuestionCounter();
+        }
+
+        // Show a question
+        function showQuestion(index) {
+            const questionElement = document.getElementById('current-question');
+            const buttonsContainer = document.getElementById('answer-buttons');
+            const feedbackElement = document.getElementById('feedback');
+            
+            const questionData = questionsData[index];
+            
+            questionElement.textContent = questionData.question;
+            buttonsContainer.innerHTML = '';
+            feedbackElement.classList.remove('show');
+            
+            questionData.answers.forEach((answer, answerIndex) => {
+                const button = document.createElement('button');
+                button.className = 'answer-btn';
+                button.textContent = answer;
+                button.onclick = () => selectAnswer(index, answerIndex);
+                buttonsContainer.appendChild(button);
+            });
+        }
+
+        // Handle answer selection
+        function selectAnswer(questionIndex, answerIndex) {
+            playSound(1000, 300, 'triangle');
+            
+            const feedbackElement = document.getElementById('feedback');
+            const questionData = questionsData[questionIndex];
+            
+            feedbackElement.textContent = questionData.feedback;
+            feedbackElement.classList.add('show');
+            
+            answeredQuestions[questionIndex] = true;
+            updateNavigationButtons();
+            
+            // Trigger heart shower
+            triggerHeartShower();
+        }
+
+        // Navigation functions
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion(currentQuestionIndex);
+                updateNavigationButtons();
+                updateQuestionCounter();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questionsData.length - 1) {
+                currentQuestionIndex++;
+                showQuestion(currentQuestionIndex);
+                updateNavigationButtons();
+                updateQuestionCounter();
+            }
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            prevBtn.disabled = currentQuestionIndex === 0;
+            nextBtn.disabled = currentQuestionIndex === questionsData.length - 1 || !answeredQuestions[currentQuestionIndex];
+        }
+
+        function updateQuestionCounter() {
+            const counter = document.getElementById('question-counter');
+            counter.textContent = `${currentQuestionIndex + 1} / ${questionsData.length}`;
+        }
+
+        // Hello Kitty mascot interaction
+        function interactWithKitty() {
+            playSound(1200, 400, 'triangle');
+            
+            // Add winking effect
+            const mascot = document.querySelector('.hello-kitty-mascot');
+            mascot.classList.add('winking');
+            
+            // Show blush
+            const blushEffects = document.querySelectorAll('.blush-effect');
+            blushEffects.forEach(effect => effect.classList.add('show-blush'));
+            
+            // Show speech bubble
+            showSpeechBubble();
+            
+            setTimeout(() => {
+                mascot.classList.remove('winking');
+                blushEffects.forEach(effect => effect.classList.remove('show-blush'));
+            }, 1000);
+        }
+
+        function showSpeechBubble() {
+            const messages = [
+                "愛菜ちゃん、可愛すぎるよ！ 💖",
+                "君は僕の全てなんだ ✨",
+                "一緒にいると幸せだよ 💕",
+                "愛菜の笑顔が一番だよ！ 😊",
+                "ずっと一緒にいようね ♡"
+            ];
+            
+            const message = messages[Math.floor(Math.random() * messages.length)];
+            
+            const bubble = document.createElement('div');
+            bubble.style.cssText = `
+                position: fixed;
+                bottom: 150px;
+                right: 20px;
+                background: linear-gradient(135deg, rgba(255, 240, 245, 0.95), rgba(255, 182, 193, 0.95));
+                padding: 15px 20px;
+                border-radius: 20px;
+                border: 2px solid #ff69b4;
+                color: #d1477a;
+                font-size: 1.1em;
+                max-width: 250px;
+                z-index: 1001;
+                animation: bounceIn 0.8s ease-out;
+                box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+            `;
+            
+            bubble.textContent = message;
+            document.body.appendChild(bubble);
+            
+            setTimeout(() => {
+                if (bubble.parentNode) {
+                    bubble.remove();
+                }
+            }, 3000);
+        }
+
+        // Easter egg functions
+        function triggerEasterEgg(eggNumber) {
+            playSound(1500, 500, 'square');
+            
+            if (eggNumber === 1) {
+                // Bow confetti
+                triggerConfetti();
+            } else if (eggNumber === 2) {
+                // Hello Kitty kiss
+                triggerHeartShower();
+            } else if (eggNumber === 3) {
+                // Love letter popup
+                showLoveLetter();
+            }
+        }
+
+        function showLoveLetter() {
+            const letter = document.createElement('div');
+            letter.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, rgba(255, 240, 245, 0.98), rgba(255, 182, 193, 0.98));
+                padding: 40px;
+                border-radius: 25px;
+                border: 3px solid #ff69b4;
+                box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+                z-index: 2000;
+                max-width: 400px;
+                text-align: center;
+                font-size: 1.3em;
+                color: #d1477a;
+                animation: bounceIn 1s ease-out;
+            `;
+            
+            letter.innerHTML = `
+                <h3 style="color: #ff1493; margin-bottom: 20px;">💌 愛菜への愛の手紙 💌</h3>
+                <p>親愛なる愛菜へ、</p>
+                <p>あなたは僕の人生に魔法をかけてくれた。</p>
+                <p>毎日がキラキラ輝いて見えるのは、</p>
+                <p>あなたがいるからだよ。</p>
+                <p>愛してる、愛菜ちゃん！</p>
+                <p style="margin-top: 20px; font-size: 0.9em; color: #ff69b4;">クリックして閉じる</p>
+            `;
+            
+            letter.onclick = () => letter.remove();
+            document.body.appendChild(letter);
+            
+            setTimeout(() => {
+                if (letter.parentNode) letter.remove();
+            }, 5000);
+        }
+
+        // Effect functions
+        function triggerConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#ff69b4', '#ffb3d9', '#ffd9ec', '#e6ccff', '#ccddff'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const piece = document.createElement('div');
+                    piece.className = 'confetti-piece';
+                    piece.style.left = Math.random() * 100 + '%';
+                    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    piece.style.animationDelay = Math.random() * 2 + 's';
+                    container.appendChild(piece);
+                    
+                    setTimeout(() => piece.remove(), 3000);
+                }, i * 50);
+            }
+        }
+
+        function triggerHeartShower() {
+            const container = document.getElementById('heart-shower');
+            const hearts = ['💕', '💖', '💗', '💝', '💘'];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-shower-heart';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.animationDelay = Math.random() * 1 + 's';
+                    container.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 4000);
+                }, i * 100);
+            }
+        }
+
+        // Floating particles system
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleTypes = ['heart', 'bow', 'sparkle'];
+            
+            setInterval(() => {
+                const type = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                if (type === 'heart') {
+                    particle.className += ' heart-particle';
+                    particle.textContent = ['💕', '💖', '💗'][Math.floor(Math.random() * 3)];
+                } else if (type === 'bow') {
+                    particle.className += ' bow-particle';
+                } else {
+                    particle.className += ' sparkle-particle';
+                }
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    if (particle.parentNode) particle.remove();
+                }, 8000);
+            }, 2000);
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initQuiz();
+            createParticles();
+            
+            // Add click listener to enable audio context
+            document.addEventListener('click', initAudio, { once: true });
+            document.addEventListener('touchstart', initAudio, { once: true });
+        });
+    </script>
+</body>
+</html>
